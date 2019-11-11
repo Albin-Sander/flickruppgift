@@ -49,9 +49,17 @@ function displayAll(data){
             document.getElementById('picture1').src = URL.createObjectURL(blob);
             document.getElementById('picture2').src = URL.createObjectURL(blob);
             console.log(catchPicture);
+            
         }
         }
         }
+
+
+        
+
+
+        
+        
 
 
 
