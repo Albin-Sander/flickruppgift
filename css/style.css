@@ -1,4 +1,20 @@
-.wrapper {
+body {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: auto 1fr auto;
 }
+
+
+.pictures {
+    grid-column: 2/3;
+    display: flex;
+    margin-top: 50%;
+}
+
+
+.searchHeader {
+    grid-column: 1/2;
+    grid-row: 1/2;
+    margin-bottom: 100%;
+}
+

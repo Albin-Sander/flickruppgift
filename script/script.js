@@ -1,38 +1,17 @@
-const apiData = {
-    url: 'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=19d3e6e0acfe9c438f368e2c2bab1c5d&format=json&nojsoncallback=1',
-    tags: '&tags=disney',
-}
+function searchFlickr() {
 
-
-const {url, tags} = apiData
-const apiUrl = `${url}${tags}`
-
-fetch(apiUrl)
-.then( (data) => console.log(data.json()))
-
-let apiPictures = {
-    url: 'https:farm66.staticflickr.com/65535/49017181663_80997984c3_m.jpg',
-}
-
-catchDisney()
-
-.catch(error => {
-    console.error(error);
-});
-
-async function catchDisney() {
-    const response = await fetch('https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=19d3e6e0acfe9c438f368e2c2bab1c5d&tags=disney&format=json&nojsoncallback=1')
-    const blob = await response.blob();
-    document.getElementById('disney').src = URL.createObjectURL(blob);
-    console.log(catchDisney);
-}
-
+document.getElementById("myInput").addEventListener("search", searchFlickr);
+let searchTag = document.getElementById("myInput").value;
+let searchURL = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=19d3e6e0acfe9c438f368e2c2bab1c5d&tags=' + searchTag + '&format=json&nojsoncallback=1';
 $.ajax({
-    url: 'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=19d3e6e0acfe9c438f368e2c2bab1c5d&tags=disney&format=json&nojsoncallback=1',
+    url: searchURL,
     type: 'GET',
     dataType: "json",
     success: displayAll
 });
+}
+
+
 
 function displayAll(data){
     
@@ -54,9 +33,29 @@ function displayAll(data){
         let pictureUrl = 'http://farm' + jsonFarmId + '.static.flickr.com/' + jsonServerId + '/' +jsonId + '_' +jsonSecret + '.jpg'
         console.log(pictureUrl);
 
+        catchPicture()
+
+        .catch(error => {
+            console.error(error);
+        });
         
+       
+
+        
+        async function catchPicture() {
+            const response = await fetch("http://farm" + data.photos.photo[i].farm + ".static.flickr.com/" + data.photos.photo[i].server + "/"+data.photos.photo[i].id + "_"+data.photos.photo[i].secret + ".jpg"
+            );
+            const blob = await response.blob();
+            document.getElementById('picture1').src = URL.createObjectURL(blob);
+            document.getElementById('picture2').src = URL.createObjectURL(blob);
+            console.log(catchPicture);
         }
         }
+        }
+
+
+
+ 
 
         
     

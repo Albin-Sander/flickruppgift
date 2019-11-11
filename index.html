@@ -11,14 +11,21 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="wrapper"></div>
+    <div class="pictures">
+            <img src=""id="picture1"/>
+            <img src=""id="picture2"/>
+    </div>
     
-    <input id="searchbar" onkeyup="search_flickr()" type="text"
-    name="search" placeholder="Search Flickr.."> 
+    <div class="searchHeader">
+    <input type="search" id="myInput" onsearch="searchFlickr()" placeholder="Search Flickr">
+    </div>
 
+    <canvas></canvas>
+
+    
     <img src=""id="disney"/>
     <img src=""id="test"/>
     <script src="script/script.js"></script>
-    <button onclick="showResult();">Show Pictures</button>
+    
 </body>
 </html>
