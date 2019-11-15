@@ -1,58 +1,135 @@
 function searchFlickr() {
-
+document.getElementById("picturePer").addEventListener("search", searchFlickr);
 document.getElementById("myInput").addEventListener("search", searchFlickr);
 let searchTag = document.getElementById("myInput").value;
-let searchURL = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=19d3e6e0acfe9c438f368e2c2bab1c5d&tags=' + searchTag + '&format=json&nojsoncallback=1';
-$.ajax({
-    url: searchURL,
-    type: 'GET',
-    dataType: "json",
-    success: displayAll
-});
-}
+let searchPerPage = document.getElementById("picturePer").value;
+let searchURL = 'https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=19d3e6e0acfe9c438f368e2c2bab1c5d&tags=' + searchTag + '&per_page=' + searchPerPage + '&format=json&nojsoncallback=1';
 
 
+async function fetchFlickr() {
+    const URL = searchURL;
+    try {
+      const fetchResult = fetch(
+        URL, { method: 'GET'}
+      );
+      const response = await fetchResult;
+      const jsonDatas = await response.json();
+      console.log(jsonDatas);
+      fetchFlickr2(jsonDatas);
+    } catch(e){
+      throw Error(e);
+    }
+  }
+  fetchFlickr()
+  }
 
-function displayAll(data){
+function fetchFlickr2(jsonDatas){
     
-    let jsonData = data.photos.photo;
+    let jsonData = jsonDatas.photos.photo;
     
     for (i = 0; i < jsonData.length; i++) {
         
         console.log(jsonData[i]);
-        let jsonFarmId = data.photos.photo[i].farm;
+        let jsonFarmId = jsonData[i].farm;
         console.log(jsonFarmId);
-        let jsonServerId = data.photos.photo[i].server;
+        let jsonServerId = jsonData[i].server;
         console.log(jsonServerId);
-        let jsonId = data.photos.photo[i].id;
+        let jsonId = jsonData[i].id;
         console.log(jsonId);
-        let jsonSecret = data.photos.photo[i].secret;
+        let jsonSecret = jsonData[i].secret;
         console.log(jsonSecret);
 
 
         let pictureUrl = 'http://farm' + jsonFarmId + '.static.flickr.com/' + jsonServerId + '/' +jsonId + '_' +jsonSecret + '.jpg'
         console.log(pictureUrl);
 
-        catchPicture()
 
-        .catch(error => {
-            console.error(error);
-        });
+            var img = document.createElement("img");
+            //img.height = height;
+            img.src = pictureUrl;
+            document.body.appendChild(img);
+
+            let modal = document.getElementById("myModal");
+            let imgages = document.getElementsByTagName(img);
+             modalimgages = document.getElementsByTagName("img01");
+            img.onclick = function () {
+             modal.style.display = "block";  
+              
+              
+            }
+ 
+            var span = document.getElementsByClassName("close")[0];
+            span.onclick = function() {
+              modal.style.display = "none";
+            }
+ 
+            var span = document.getElementsByClassName("close")[0];
+ 
+            span.onclick = function() { 
+             modal.style.display = "none";
+           }
+
+
+            /*$(function (){
+              $('img').on('click', function ()
+              {
+            $(this).width(1000);
+            });
+            });
+            */
+           
+
+           
+            
+            }
+          
+          
+          
+            }
+
+
+            
+
+
+
+           
+
+
+        
+           
+
+        
+
+
+        
+          
+
+
+
+
+
+
+
+        
+
+        
+
+
+
+
+        
         
        
 
         
-        async function catchPicture() {
-            const response = await fetch("http://farm" + data.photos.photo[i].farm + ".static.flickr.com/" + data.photos.photo[i].server + "/"+data.photos.photo[i].id + "_"+data.photos.photo[i].secret + ".jpg"
-            );
-            const blob = await response.blob();
-            document.getElementById('picture1').src = URL.createObjectURL(blob);
-            document.getElementById('picture2').src = URL.createObjectURL(blob);
-            console.log(catchPicture);
-            
-        }
-        }
-        }
+        
+
+
+
+
+        //let li =document.createElement("li")
+        //let el = document.createElement("img")
+
 
 
         
