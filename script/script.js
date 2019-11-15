@@ -49,43 +49,41 @@ function fetchFlickr2(jsonDatas){
             img.src = pictureUrl;
             document.body.appendChild(img);
 
+            
+            
             let modal = document.getElementById("myModal");
             let imgages = document.getElementsByTagName(img);
-             modalimgages = document.getElementsByTagName("img01");
+             modalimgages = document.getElementById("img01");
+             
+          
             img.onclick = function () {
              modal.style.display = "block";  
+             modalimgages.src = this.src;
               
-              
+             
             }
+
+            
+
+            
+            
  
             var span = document.getElementsByClassName("close")[0];
             span.onclick = function() {
               modal.style.display = "none";
             }
+            
  
             var span = document.getElementsByClassName("close")[0];
  
             span.onclick = function() { 
              modal.style.display = "none";
-           }
 
-
-            /*$(function (){
-              $('img').on('click', function ()
-              {
-            $(this).width(1000);
-            });
-            });
-            */
-           
+             modal
+             
+           }}}
 
            
-            
-            }
-          
-          
-          
-            }
 
 
             
